@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ParentsQuestions index{% endblock %}
+
+{% block body %}
+    <h1>ParentsQuestions index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Question</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for parents_question in parents_questions %}
+            <tr>
+                <td>{{ parents_question.id }}</td>
+                <td>{{ parents_question.question }}</td>
+                <td>
+                    <a href="{{ path('app_parents_questions_show', {'id': parents_question.id}) }}">show</a>
+                    <a href="{{ path('app_parents_questions_edit', {'id': parents_question.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_parents_questions_new') }}">Create new</a>
+{% endblock %}
