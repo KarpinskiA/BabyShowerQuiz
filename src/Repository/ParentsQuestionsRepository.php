@@ -21,6 +21,18 @@ class ParentsQuestionsRepository extends ServiceEntityRepository
         parent::__construct($registry, ParentsQuestions::class);
     }
 
+    /**
+     * @return ParentsQuestions[] Returns an array of ParentsQuestions objects with only the id and question fields
+     */
+    public function findAllParentsQuestions(): array
+    {
+        return $this->createQueryBuilder('p')
+            ->select('p.id', 'p.question')
+            ->orderBy('p.id', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
     //    /**
     //     * @return ParentsQuestions[] Returns an array of ParentsQuestions objects
     //     */

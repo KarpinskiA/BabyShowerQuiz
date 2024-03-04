@@ -21,28 +21,40 @@ class BabyQuestionsRepository extends ServiceEntityRepository
         parent::__construct($registry, BabyQuestions::class);
     }
 
-//    /**
-//     * @return BabyQuestions[] Returns an array of BabyQuestions objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('b')
-//            ->andWhere('b.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('b.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**
+     * @return BabyQuestions[] Returns an array of BabyQuestions objects with only the id and question fields
+     */
+    public function findAllBabyQuestions(): array
+    {
+        return $this->createQueryBuilder('b')
+            ->select('b.id', 'b.question')
+            ->orderBy('b.id', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 
-//    public function findOneBySomeField($value): ?BabyQuestions
-//    {
-//        return $this->createQueryBuilder('b')
-//            ->andWhere('b.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    //    /**
+    //     * @return BabyQuestions[] Returns an array of BabyQuestions objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('b')
+    //            ->andWhere('b.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('b.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
+
+    //    public function findOneBySomeField($value): ?BabyQuestions
+    //    {
+    //        return $this->createQueryBuilder('b')
+    //            ->andWhere('b.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }

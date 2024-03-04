@@ -21,6 +21,34 @@ class ResponsesRepository extends ServiceEntityRepository
         parent::__construct($registry, Responses::class);
     }
 
+    public function saveBabyResponse($answer, $user, $babyQuestion): Responses
+    {
+        $response = new Responses();
+
+        $response->setResponse($answer);
+        $response->setPerson($user);
+        $response->setBabyQuestion($babyQuestion);
+
+        $this->getEntityManager()->persist($response);
+        $this->getEntityManager()->flush();
+
+        return $response;
+    }
+
+    public function saveParentResponse($answer, $user, $parentsQuestion): Responses
+    {
+        $response = new Responses();
+
+        $response->setResponse($answer);
+        $response->setPerson($user);
+        $response->setParentQuestion($parentsQuestion);
+
+        $this->getEntityManager()->persist($response);
+        $this->getEntityManager()->flush();
+
+        return $response;
+    }
+
     //    /**
     //     * @return Responses[] Returns an array of Responses objects
     //     */

@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MainController!{% endblock %}
+
+{% block body %}
+    <h1>Jeu des pronostics</h1>
+    <form action="{{ path('app_quiz') }}" method="post">
+        <div class="d-flex flex-column">
+            <h2>Le futur bébé</h2>
+            <label>Quel sera le prénom du bébé ?</label>
+            <input type="text" id="babyQuestion-1" name="firstName" placeholder="Prénom" required/>
+
+            <label>A quelle date va-t'il naître ?</label>
+            <input type="date" id="babyQuestion-2" name="birthDate" min="2024-03-01" max="2024-12-31"required/>
+
+            <label>A quelle heure va-t'il naître ?</label>
+            <input type="time" id="babyQuestion-3" name="birthTime" required/>
+
+            <label>Quel sera le sexe du bébé ?</label>
+            <label>
+                <input type="radio" id="babyQuestion-4" value="garçon" name="gender" required>
+                Garçon
+            </label>
+            <label>
+                <input type="radio" id="babyQuestion-4" value="fille" name="gender" required>
+                Fille
+            </label>
+
+            <label>Quel sera le poids en <strong>grammes</strong> du bébé ?</label>
+            <input type="number" id="babyQuestion-5" name="weigth" step=".01" placeholder="3750 pour 3kg750" required/>
+
+            <label>Quelle sera la taille en centimètres du bébé ?</label>
+            <input type="number" id="babyQuestion-6" name="height" placeholder="37 pour 37cm" required/>
+
+            <label>Quelle sera la couleur des cheveux du bébé ?</label>
+            <input type="text" id="babyQuestion-7" name="hairColor" placeholder="Brun" required/>
+        </div>
+
+        <h2>Papa ou maman ?</h2>
+        <div class="d-flex flex-column">
+            {% for question in parentsQuestions %}
+                <label for="parentQuestion-{{question.id}}">{{ question.question }}</label>
+                <label>
+                    <input type="radio" id="papa-q-{{question.id}}" value="papa" name="parentQuestion-{{question.id}}" required>
+                    Papa
+                </label>
+                <label>
+                    <input type="radio" id="maman-q-{{question.id}}" value="maman" name="parentQuestion-{{question.id}}" required>
+                    Maman
+                </label>
+            {% endfor %}
+        </div>
+
+        <h2>Qui es-tu ?</h2>
+        <div class="d-flex flex-column">
+            <label>Quel est ton Nom ?</label>
+            <input type="text" id="user-1" name="userLastName" placeholder="Doe" required/>
+
+            <label>Quel est ton Prénom ?</label>
+            <input type="text" id="user-2" name="userFirstName" placeholder="John" required/>
+
+            <label>Quel est ton adresse email ? (optionnel)</label>
+            <input type="email" id="user-3" name="userEmail" placeholder="Adress email"/>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+{% endblock %}
