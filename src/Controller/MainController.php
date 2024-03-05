@@ -2,15 +2,15 @@
 
 namespace App\Controller;
 
-use App\Repository\BabyQuestionsRepository;
-use App\Repository\ParentsQuestionsRepository;
-use App\Repository\ResponsesRepository;
 use App\Repository\UserRepository;
 use App\Service\ValidationUserValues;
+use App\Repository\ResponsesRepository;
+use App\Repository\BabyQuestionsRepository;
+use Symfony\Component\HttpFoundation\Request;
+use App\Repository\ParentsQuestionsRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 
 class MainController extends AbstractController
 {
@@ -78,7 +78,8 @@ class MainController extends AbstractController
         $userData = [
             'lastName' => $data['userLastName'],
             'firstName' => $data['userFirstName'],
-            'email' => $data['userEmail']
+            'email' => $data['userEmail'],
+            'createdAt' => new \DateTimeImmutable()
         ];
 
         // add user to the database

@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/admin/questions/baby')]
+#[Route('/questions/baby')]
 class BabyQuestionsController extends AbstractController
 {
     #[Route('/', name: 'app_baby_questions_index', methods: ['GET'])]

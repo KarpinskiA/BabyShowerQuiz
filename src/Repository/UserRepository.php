@@ -29,7 +29,7 @@ class UserRepository extends ServiceEntityRepository
         $user->setLastname($userData['lastName']);
         $user->setFirstname($userData['firstName']);
         $user->setEmail($userData['email']);
-        $user->setCreatedAt(new \DateTimeImmutable());
+        $user->setCreatedAt($userData['createdAt']);
 
         $this->getEntityManager()->persist($user);
         $this->getEntityManager()->flush();
@@ -43,9 +43,11 @@ class UserRepository extends ServiceEntityRepository
             ->andWhere('u.lastname = :lastname')
             ->andWhere('u.firstname = :firstname')
             ->andWhere('u.email = :email')
+            ->andWhere('u.createdAt = :createdAt')
             ->setParameter('lastname', $userData['lastName'])
             ->setParameter('firstname', $userData['firstName'])
             ->setParameter('email', $userData['email'])
+            ->setParameter('createdAt', $userData['createdAt'])
             ->getQuery()
             ->getOneOrNullResult();
     }
